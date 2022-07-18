@@ -14,7 +14,7 @@ sim.z <- function(n, pi, mu, sigma){
   return(data.frame(cbind(data.x, data.y)))
 }
 
-#give the empirical power of two-sample test comparing independent similarity coefficients for a sequence of k
+#calculate the empirical power of two-sample test comparing independent similarity coefficients for a sequence of k
 powerest<-function(K,B,n,pi,mu_1,mu_2,sigma_1,sigma_2,c,sim.z){
   z_hat<-FBM(K, B)
   tmp<-foreach (s = 1:B, .combine = 'c') %:%
@@ -64,7 +64,7 @@ powerest<-function(K,B,n,pi,mu_1,mu_2,sigma_1,sigma_2,c,sim.z){
   return(power)
 }
 
-#give the theoritical power of two-sample test comparing independent similarity coefficients for a sequence of k
+#calculate the theoritical power of two-sample test comparing independent similarity coefficients for a sequence of k
 powertheory <- function(K,mu_1,mu_all,sigma_1,sigma_all,z_alpha,c,pi){
   mu=mu_1
   sigma=sigma_1
@@ -127,7 +127,7 @@ sim.z <- function(n, pi, mu1, sigma1, mu2, sigma2){
   return(data.frame(cbind(data.x, data.y, data.z)))
 }
 
-#give the empirical power of two-sample test comparing dependent similarity coefficients for a sequence of k
+#calculate the empirical power of two-sample test comparing dependent similarity coefficients for a sequence of k
 powerest<-function(K,B,n,pi,mu1,mu2,sigma1,sigma2,c,sim.z){
   z_hat<-FBM(K, B)
   tmp<-foreach (s = 1:B, .combine = 'c') %:%
@@ -176,7 +176,7 @@ powerest<-function(K,B,n,pi,mu1,mu2,sigma1,sigma2,c,sim.z){
   return(power)
 }
 
-#give the theoritical power of two-sample test comparing dependent similarity coefficients for a sequence of k
+#calculate the theoritical power of two-sample test comparing dependent similarity coefficients for a sequence of k
 powertheory <- function(K,mu1,mu_all,sigma1,sigma_all,z_alpha,c,pi){
   
   power_theory<-matrix(0,length(mu_all),K)
@@ -234,7 +234,7 @@ powertheory <- function(K,mu1,mu_all,sigma1,sigma_all,z_alpha,c,pi){
   return(power_theory)
 }
 
-#calculate test statistic for two sample test comparing independent similarity coefficient using BRCA 
+#calculate test statistic for two sample test comparing independent similarity coefficients
 similarity_coefficient.two_sample_test <- function(z1_1,z2_1,z1_2,z2_2,c,k,n1,n2){
   zdata_1<-data.frame(cbind(z1_1, z2_1))
   z.and.l_1<-zdata_1[which(z1_1>c[1] & z2_1 >c[1]),]
@@ -265,7 +265,7 @@ similarity_coefficient.two_sample_test <- function(z1_1,z2_1,z1_2,z2_2,c,k,n1,n2
   return(cbind(test_statistic, p.value))
 }
 
-#calculate test statistic for two sample test comparing dependent similarity coefficient using STAD, KIRC and COAD 
+#calculate test statistic for two sample test comparing dependent similarity coefficients
 similarity_coefficient.two_sample_test_dependent <- function(z1,z2,z3,c,k,n){
   zdata<-data.frame(cbind(z1, z2,z3))
   
